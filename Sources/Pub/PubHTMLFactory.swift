@@ -14,7 +14,7 @@ struct PubHTMLFactory<Site: Website>: HTMLFactory {
     }
     
     func makeSectionHTML(for section: Publish.Section<Site>, context: Publish.PublishingContext<Site>) throws -> Plot.HTML {
-        HTML(.text("Section"))
+        try makePostsHTML(for: section, context: context)
     }
     
     func makeItemHTML(for item: Publish.Item<Site>, context: Publish.PublishingContext<Site>) throws -> Plot.HTML {
