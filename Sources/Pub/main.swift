@@ -16,10 +16,16 @@ struct Pub: Website {
     // Update these properties to configure your website:
     var url = URL(string: "https://your-website-url.com")!
     var name = "Pub"
-    var description = "A description of Pub"
+    var description = "Just your local neighborhood Pub"
     var language: Language { .english }
     var imagePath: Path? { nil }
 }
 
-// This will generate your website using the built-in Foundation theme:
-try Pub().publish(withTheme: .foundation)
+extension Theme where Site == Pub {
+    static var pubTheme: Theme {
+        Theme(htmlFactory: PubHTMLFactory(), resourcePaths: ["Resources/PubTheme/styles.css"])
+    }
+}
+
+try Pub().publish(withTheme: .pubTheme)
+
